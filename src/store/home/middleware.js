@@ -6,6 +6,7 @@ import {
   getRepositoriesByOrganizationService,
   getRepositoryClosedIssuesService,
   getRepositoryStatisticsService,
+  getRepositoryTopicsService,
   searchOrganizationService
 } from './service'
 
@@ -36,6 +37,9 @@ const getRepositoriesByOrganization = (store) => (next) => async (action) => {
   const repositories = [...data.data]
   for (let i = 0; i < repositories.length; i++) {
     const { data: issuesData } = await getRepositoryClosedIssuesService({ repo: repositories[i].name, org: action.payload.name })
+    // Getting the topics here
+    // const { data: topics } = await getRepositoryTopicsService({ repo: repositories[i].name, org: action.payload.name })
+    // console.log("🚀 ~ file: middleware.js ~ line 42 ~ getRepositoriesByOrganization ~ topics", topics)
     repositories[i] = { ...repositories[i], closed_issues: issuesData?.length || 0 }
     if (repositories.length - 1 === i) {
       store.dispatch(homeSetter({ type: "repositories", data: { ...data, data: repositories } }))

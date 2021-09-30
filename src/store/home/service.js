@@ -43,6 +43,19 @@ export const getRepositoryClosedIssuesService = async ({ org, repo }) => {
         return errorHandler(error)
     }
 }
+export const getRepositoryTopicsService = async ({ org, repo }) => {
+    try {
+        const { data } = await github.get(`/repos/${org}/${repo}/topics`, {
+            headers: {
+                Accept: "application/vnd.github.mercy-preview+json"
+            }
+        })
+        return successHandler(data)
+
+    } catch (error) {
+        return errorHandler(error)
+    }
+}
 
 export const searchOrganizationService = async (payload) => {
     try {
