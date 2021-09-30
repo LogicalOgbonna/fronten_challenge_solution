@@ -1,0 +1,286 @@
+.content {
+    .organization {
+        display: flex;
+        align-items: center;
+
+        .img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .texts {
+            margin-left: 8px;
+
+            .name {
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 20px;
+                color: #000000;
+            }
+
+            .description {
+                color: #6c757d;
+                font-size: 12px;
+
+            }
+        }
+    }
+
+
+    .table-graph_section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+
+        .split {
+            width: 48%;
+            margin-bottom: 40px;
+        }
+
+        .table-input_section {
+            .input_section {
+                display: flex;
+                justify-content: space-between;
+
+                >:first-child {
+                    width: 50%;
+                }
+
+                >:last-child {
+                    width: 40%;
+                }
+
+                .input {
+                    label {
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: #000000;
+                    }
+
+                    input {
+                        outline: none;
+                        background: #FFFFFF;
+                        height: 40px;
+                        border: 1.5px solid #d3d3d3;
+
+                        &::placeholder {
+                            font-size: 12px;
+                            line-height: 14px;
+                            padding: 13px 10px;
+
+                            color: #D3D3D3;
+                        }
+
+                    }
+
+                    .minGreaterError {
+                        border: 1px solid red;
+                    }
+
+                    .error_ball {
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 50%;
+                        padding: 1px 6px;
+                        background: red;
+                        color: #FFFFFF;
+                        margin-left: 2px;
+                    }
+
+                    .repository_name {
+                        width: 100%;
+                    }
+
+                    .issues_range {
+                        input {
+                            width: 65px;
+                        }
+
+                        >:last-child {
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+
+            .table_section {
+                margin-top: 20px;
+                max-height: 400px;
+                overflow-y: auto;
+                position: relative;
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+
+                td {
+                    background: #FFFFFF;
+                    font-size: 12px;
+                    line-height: 14px;
+                    text-align: right !important;
+
+                    &.first {
+                        text-align: left !important;
+                    }
+                }
+
+                td,
+                th {
+                    padding: 14px;
+                    text-align: left;
+                    font-size: 18px;
+                    border-bottom: 1px solid #ccc;
+                    cursor: pointer;
+                    span {
+                        padding: 2px 0 2px 4px;
+                    }
+                }
+
+                th {
+                    background: #e5e5e5 !important;
+                    color: #000000;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 14px;
+                    border-bottom: 2px solid black;
+                    text-align: right !important;
+
+                    &.first {
+                        text-align: left !important;
+                        width: 55%;
+                    }
+                }
+
+                .no-result {
+                    color: #D3D3D3;
+                    font-size: 12px;
+                    line-height: 14px;
+                    padding-top: 15px;
+                }
+
+                /* 
+                Max width before this PARTICULAR table gets nasty
+                This query will take effect for any screen smaller than 760px
+                and also iPads specifically.
+                */
+                @media only screen and (max-width: 760px),
+                (min-device-width: 768px) and (max-device-width: 1024px) {
+
+                    table {
+                        width: 100%;
+                    }
+
+                    /* Force table to not be like tables anymore */
+                    table,
+                    thead,
+                    tbody,
+                    th,
+                    td,
+                    tr {
+                        display: block;
+                    }
+
+                    /* Hide table headers (but not display: none;, for accessibility) */
+                    thead tr {
+                        position: absolute;
+                        top: -9999px;
+                        left: -9999px;
+                    }
+
+                    tr {
+                        border: 1px solid #ccc;
+                    }
+
+                    td {
+                        /* Behave  like a "row" */
+                        border: none;
+                        border-bottom: 1px solid #eee;
+                        position: relative;
+                        padding-left: 50%;
+                    }
+
+                    td:before {
+                        /* Now like a table header */
+                        position: absolute;
+                        /* Top/left values mimic padding */
+                        top: 6px;
+                        left: 6px;
+                        width: 45%;
+                        padding-right: 10px;
+                        white-space: nowrap;
+                        /* Label the data */
+                        content: attr(data-column);
+
+                        color: #000;
+                        font-weight: bold;
+                    }
+
+                }
+            }
+        }
+
+        .graph_section {
+            .select {
+                select {
+                    width: 320px;
+                    height: 40px;
+                    background: #FFFFFF;
+                    border: 1.5px solid #d3d3d3;
+                    margin-top: 25px;
+                    outline: none;
+
+                    &::placeholder {
+                        font-size: 12px;
+                        line-height: 14px;
+                        padding: 13px 10px;
+
+                        color: #D3D3D3;
+                    }
+                }
+            }
+
+            .graph {
+                margin-top: 10px;
+                width: 100%;
+                background: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                padding-top: 20px;
+                // height: 400px;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+        .table-graph_section {
+            flex-direction: column;
+
+            .split {
+                width: 100%;
+            }
+
+            .table-input_section {
+                .table_section {
+                    table {
+                        width: 100%;
+                    }
+
+                    td,
+                    th {
+                        text-align: left !important;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.border {
+    border: 1px solid #000000 !important;
+}
